@@ -28,9 +28,10 @@ const Container = styled.div`
 
 interface IProps {
   children: ReactNode;
+  closePortal: VoidFunction;
 }
 
-const ModalPortal: FC<IProps> = ({ children }) => {
+const ModalPortal: FC<IProps> = ({ children, closePortal }) => {
   const ref = useRef<Element | null>();
   const [mounted, setMounted] = useState(false);
 
