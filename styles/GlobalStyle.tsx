@@ -6,6 +6,7 @@ const globalStyle = css`
   ${reset};
   * {
     box-sizing: border-box;
+    transition: ease 300ms;
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
