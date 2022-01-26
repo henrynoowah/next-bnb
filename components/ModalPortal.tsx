@@ -28,10 +28,10 @@ const Container = styled.div`
 
 interface IProps {
   children: ReactNode;
-  closePortal: VoidFunction;
+  closeModal: VoidFunction;
 }
 
-const ModalPortal: FC<IProps> = ({ children, closePortal }) => {
+const ModalPortal: FC<IProps> = ({ children, closeModal }) => {
   const ref = useRef<Element | null>();
   const [mounted, setMounted] = useState(false);
 
@@ -46,7 +46,7 @@ const ModalPortal: FC<IProps> = ({ children, closePortal }) => {
   if (ref.current && mounted) {
     return createPortal(
       <Container>
-        <div className="modal-background" />
+        <div className="modal-background" onClick={closeModal} />
         {children}
       </Container>,
       ref.current

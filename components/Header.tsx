@@ -82,7 +82,7 @@ const Header: FC = () => {
         </button>
       </div>
       {modalOpened && (
-        <ModalPortal closePortal={() => setModalOpened(false)}>
+        <ModalPortal closeModal={() => setModalOpened(false)}>
           <SignUpModal />
         </ModalPortal>
       )}
