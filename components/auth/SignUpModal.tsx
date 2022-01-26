@@ -9,6 +9,7 @@ import Input from "../common/input";
 import { dayList, monthList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
 import Selector from "../common/Selector";
+import Button from "../common/Button";
 
 const Container = styled.form`
   width: 568px;
@@ -61,6 +62,12 @@ const Container = styled.form`
       width: 33.3333%;
     }
   }
+
+  .sign-up-modal-submit-button-wrapper {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid ${palette.gray_eb};
+  }
 `;
 
 interface IProps {
@@ -73,6 +80,10 @@ const SignUpModal: FC = () => {
   const [firstName, setFirstName] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+
+  const [birthYear, setBirthYear] = useState<string | undefined>();
+  const [birthDay, setBirthDay] = useState<string | undefined>();
+  const [birthMonth, setBirthMonth] = useState<string | undefined>();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -89,6 +100,16 @@ const SignUpModal: FC = () => {
 
   const togglePassword = () => {
     setHidePassword(!hidePassword);
+  };
+
+  const onChangeBirthMonth = (e: ChangeEvent<HTMLSelectElement>) => {
+    setBirthMonth(e.target.value);
+  };
+  const onChangeBirthDay = (e: ChangeEvent<HTMLSelectElement>) => {
+    setBirthDay(e.target.value);
+  };
+  const onChangeBirthYear = (e: ChangeEvent<HTMLSelectElement>) => {
+    setBirthYear(e.target.value);
   };
 
   return (
@@ -147,6 +168,7 @@ const SignUpModal: FC = () => {
             options={monthList}
             disabledOptions={["월"]}
             defaultValue="월"
+            onChange={onChangeBirthMonth}
           />
         </div>
         <div className="sign-up-modal-birthday-day-selector">
@@ -154,6 +176,7 @@ const SignUpModal: FC = () => {
             options={dayList}
             disabledOptions={["일"]}
             defaultValue="일"
+            onChange={onChangeBirthDay}
           />
         </div>
         <div className="sign-up-modal-birthday-year-selector">
@@ -161,8 +184,12 @@ const SignUpModal: FC = () => {
             options={yearList}
             disabledOptions={["년"]}
             defaultValue="년"
+            onChange={onChangeBirthYear}
           />
         </div>
+      </div>
+      <div className="sign-up-modal-submit-button-wrapper">
+        <Button type="submit">가입하기</Button>
       </div>
     </Container>
   );
