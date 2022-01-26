@@ -9,6 +9,7 @@ const Container = styled.div<{ iconExist: boolean }>`
     height: 46px;
     padding: ${({ iconExist }) => (iconExist ? "0 44 0 11px" : "0 11px")};
     border: 1px solid ${palette.gray_76};
+    border-radius: 4px;
     font-size: 16px;
     outline: none;
     ::placeholder {
@@ -18,7 +19,6 @@ const Container = styled.div<{ iconExist: boolean }>`
       border-color: ${palette.dark_cyan} !important;
     }
   }
-
   .input-icon-wrapper {
     position: absolute;
     top: 0;
