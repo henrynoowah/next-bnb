@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from "react";
+import { FC, useState, ChangeEvent, FormEvent } from "react";
 import styled from "styled-components";
 import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg";
 import MailIcon from "../../public/static/svg/auth/mail.svg";
@@ -10,6 +10,7 @@ import { dayList, monthList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
 import Selector from "../common/Selector";
 import Button from "../common/Button";
+import { signUpAPI } from "../../lib/api/auth";
 
 const Container = styled.form`
   width: 568px;
@@ -112,8 +113,26 @@ const SignUpModal: FC = () => {
     setBirthYear(e.target.value);
   };
 
+  const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const signUpBody = {
+        email,
+        lastName,
+        firstName,
+        password,
+        birthday: new Date(
+          `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
+        ).toISOString(),
+      };
+      await signUpAPI(signUpBody);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       <CloseXIcon className="modal-close-x-icon" />
       <div className="input-wrapper">
         <Input
