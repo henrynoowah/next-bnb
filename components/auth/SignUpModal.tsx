@@ -33,6 +33,10 @@ const Container = styled.form`
   }
 `;
 
+interface IProps {
+  closeModal: VoidFunction;
+}
+
 const SignUpModal: FC = () => {
   const [email, setEmail] = useState("");
   const [lastName, setLastName] = useState("");
