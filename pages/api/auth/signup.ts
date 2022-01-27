@@ -38,12 +38,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     };
 
     Data.user.write([...users, newUser]);
-    const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> = newUser;
-    delete newUserWithoutPassword.password;
+
+    const token = jwt.sign(String(newUser.id), process.env.JWT_SECRET!);
+
+    res.setHeader(
+      "Set-Cookie",
+      `access_token=${token}; path=/; expires=${new Date(
+        Date.now() + 60 * 60 * 24 * 1000 * 3 //3일
+      )}; httponly`
+    );
+    // const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> = newUser;
+    // delete newUserWithoutPassword.password;
     res.statusCode = 200;
     return res.send(newUser);
-  }
+  };
   res.statusCode = 405;
 
   return res.end();
-}
+};

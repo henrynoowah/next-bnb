@@ -10,5 +10,5 @@ interface SignUpAPIBody {
 }
 
 export const signUpAPI = (body: SignUpAPIBody) => {
-  return axios.post<UserType>("/api/auth/signup", body);
+  return axios.post("/api/auth/signup", body);
 };
