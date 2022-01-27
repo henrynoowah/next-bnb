@@ -7,9 +7,11 @@ import {
 } from "react-redux";
 import user from "../lib/data/user";
 import userSlice, { userActions } from "./user";
+import commonSlice from "./common";
 
 const rootReducer = combineReducers({
-  user: userSlice.reducer
+  user: userSlice.reducer,
+  common: commonSlice.reducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -13,6 +13,7 @@ import Button from "../common/Button";
 import { signUpAPI } from "../../lib/api/auth";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
+import useValidateMode from "../../hooks/useValidateMode";
 
 const Container = styled.form`
   width: 568px;
@@ -78,6 +79,8 @@ interface IProps {
 }
 
 const SignUpModal: FC = () => {
+  const { setValidateMode } = useValidateMode();
+
   const [email, setEmail] = useState("");
   const [lastName, setLastName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -119,6 +122,7 @@ const SignUpModal: FC = () => {
 
   const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setValidateMode(true);
     try {
       const signUpBody = {
         email,
@@ -147,6 +151,9 @@ const SignUpModal: FC = () => {
           icon={<MailIcon />}
           value={email}
           onChange={onChangeEmail}
+          useValidation
+          isValid={!!email}
+          errMessage="이메일이 필요합니다."
         />
       </div>
       <div className="input-wrapper">
@@ -156,6 +163,9 @@ const SignUpModal: FC = () => {
           icon={<PersonIcon />}
           value={lastName}
           onChange={onChangeLastName}
+          useValidation
+          isValid={!!lastName}
+          errMessage="이름을 입력하세요."
         />
       </div>
       <div className="input-wrapper">
@@ -164,6 +174,9 @@ const SignUpModal: FC = () => {
           icon={<PersonIcon />}
           value={firstName}
           onChange={onChangeFirstName}
+          useValidation
+          isValid={!!lastName}
+          errMessage="성을 입력하세요."
         />
       </div>
       <div className="input-wrapper sign-up-password-input-wrapper">
@@ -179,6 +192,9 @@ const SignUpModal: FC = () => {
           }
           value={password}
           onChange={onChangePassword}
+          useValidation
+          isValid={!!password}
+          errMessage="비밀번호를 입력하세요."
         />
       </div>
       <p className="sign-up-birthday-label">생일</p>
