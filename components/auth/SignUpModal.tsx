@@ -18,7 +18,8 @@ import PasswordWarning from "./PasswordWarning";
 
 const Container = styled.form`
   width: 568px;
-  height: 614px;
+  /* height: 614px; */
+  min-height: fit-content;
   padding: 32px;
   background-color: white;
   z-index: 11;
