@@ -7,9 +7,11 @@ import {
 } from "react-redux";
 import user from "../lib/data/user";
 import userSlice, { userActions } from "./user";
+import commonSlice from "./common";
 
 const rootReducer = combineReducers({
-  user: userSlice.reducer
+  user: userSlice.reducer,
+  common: commonSlice.reducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -26,7 +28,7 @@ const reducer = (state: any, action: any) => {
     }
     return state;
   }
-  return rootReducer;
+  return rootReducer(state, action);
 };
 
 // 타입 지원되는 커스텀 useSelector 만들기

@@ -16,14 +16,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setLoggedUser: (state) => {
-      return {
-        ...state,
-        isLogged: true
-      }
+    setLoggedUser: (state, action: PayloadAction<UserType>) => {
+      state = { ...action.payload, isLogged: true};
+      return state;
     }
   }
-})
+});
 
 export const userActions = { ...userSlice.actions };
 
