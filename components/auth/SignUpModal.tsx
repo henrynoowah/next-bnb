@@ -259,6 +259,7 @@ const SignUpModal: FC = () => {
             options={monthList}
             disabledOptions={["월"]}
             defaultValue="월"
+            isValid={!!birthMonth}
             onChange={onChangeBirthMonth}
           />
         </div>
@@ -267,6 +268,7 @@ const SignUpModal: FC = () => {
             options={dayList}
             disabledOptions={["일"]}
             defaultValue="일"
+            isValid={!!birthDay}
             onChange={onChangeBirthDay}
           />
         </div>
@@ -275,6 +277,7 @@ const SignUpModal: FC = () => {
             options={yearList}
             disabledOptions={["년"]}
             defaultValue="년"
+            isValid={!!birthYear}
             onChange={onChangeBirthYear}
           />
         </div>
