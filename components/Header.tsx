@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FC, useState } from "react";
 import styled from "styled-components";
+import useModal from "../hooks/useModal";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
 import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
 import palette from "../styles/palette";
@@ -59,7 +60,7 @@ const Container = styled.div`
 `;
 
 const Header: FC = () => {
-  const [modalOpened, setModalOpened] = useState(false);
+  const { openModal, ModalPortal, closeModal } = useModal();
 
   return (
     <Container>
@@ -73,7 +74,7 @@ const Header: FC = () => {
         <button
           type="button"
           className="header-sign-up-button"
-          onClick={() => setModalOpened(!modalOpened)}
+          onClick={() => openModal()}
         >
           회원가입
         </button>
@@ -81,9 +82,9 @@ const Header: FC = () => {
           로그인
         </button>
       </div>
-      {modalOpened && (
-        <ModalPortal closeModal={() => setModalOpened(false)}>
-          <SignUpModal />
+      {ModalPortal && (
+        <ModalPortal>
+          <SignUpModal closeModal={closeModal} />
         </ModalPortal>
       )}
     </Container>

@@ -80,7 +80,7 @@ interface IProps {
   closeModal: VoidFunction;
 }
 
-const SignUpModal: FC = () => {
+const SignUpModal: FC<IProps> = ({ closeModal }) => {
   const { setValidateMode } = useValidateMode();
 
   const [email, setEmail] = useState("");
@@ -153,29 +153,50 @@ const SignUpModal: FC = () => {
     setBirthYear(e.target.value);
   };
 
+  const validateSignUpForm = () => {
+    if (!email || !lastName || !firstName || !password) {
+      return false;
+    }
+    if (
+      isPasswordHasNameOrEmail ||
+      !isPasswordOverMinLength ||
+      isPasswordHasNumberOrSymbol
+    ) {
+      return false;
+    }
+    if (!birthYear || !birthMonth || !birthDay) {
+      return false;
+    }
+    return true;
+  };
+
   const onSubmitSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setValidateMode(true);
-    try {
-      const signUpBody = {
-        email,
-        lastName,
-        firstName,
-        password,
-        birthday: new Date(
-          `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
-        ).toISOString(),
-      };
-      const { data } = await signUpAPI(signUpBody);
-      dispatch(userActions.setLoggedUser(data));
-    } catch (e) {
-      console.log(e);
+
+    if (validateSignUpForm()) {
+      try {
+        const signUpBody = {
+          email,
+          lastName,
+          firstName,
+          password,
+          birthday: new Date(
+            `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
+          ).toISOString(),
+        };
+        const { data } = await signUpAPI(signUpBody);
+        dispatch(userActions.setLoggedUser(data));
+        closeModal();
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
   return (
     <Container onSubmit={onSubmitSignUp}>
-      <CloseXIcon className="modal-close-x-icon" />
+      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input
           placeholder="이메일주소"
