@@ -1,4 +1,11 @@
-import { FC, useState, ChangeEvent, FormEvent, useMemo } from "react";
+import {
+  FC,
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useMemo,
+  useEffect,
+} from "react";
 import styled from "styled-components";
 import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg";
 import MailIcon from "../../public/static/svg/auth/mail.svg";
@@ -73,6 +80,11 @@ const Container = styled.form`
     margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid ${palette.gray_eb};
+  }
+  .sign-up-modal-set-login {
+    color: ${palette.dark_cyan};
+    margin-left: 8px;
+    cursor: pointer;
   }
 `;
 
@@ -194,6 +206,13 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
     }
   };
 
+  // 리덕스 validateMode를 사용하였기 때문에 컴포넌트 unmount시 setValidateMode(false) 초기화
+  useEffect(() => {
+    return () => {
+      setValidateMode(false);
+    };
+  }, []);
+
   return (
     <Container onSubmit={onSubmitSignUp}>
       <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
@@ -306,6 +325,16 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
       <div className="sign-up-modal-submit-button-wrapper">
         <Button type="submit">가입하기</Button>
       </div>
+      <p>
+        이미 에어비엔비 계정이 있나요?
+        <span
+          className="sign-up-modal-set-login"
+          role="presentation"
+          onClick={() => {}}
+        >
+          로그인
+        </span>
+      </p>
     </Container>
   );
 };

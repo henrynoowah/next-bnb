@@ -46,8 +46,8 @@ const ModalPortal: FC<IProps> = ({ children, closeModal }) => {
   if (ref.current && mounted) {
     return createPortal(
       <Container>
-        <div className="modal-background" onClick={closeModal} />
         {children}
+        <div className="modal-background" onClick={closeModal} />
       </Container>,
       ref.current
     );
