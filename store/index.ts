@@ -8,10 +8,12 @@ import {
 import user from "../lib/data/user";
 import userSlice, { userActions } from "./user";
 import commonSlice from "./common";
+import authSlice from "./auth";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
-  common: commonSlice.reducer
+  common: commonSlice.reducer,
+  auth: authSlice.reducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
