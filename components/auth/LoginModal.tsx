@@ -62,7 +62,6 @@ const LoginModal: FC<IProps> = ({ closeModal }) => {
   const { setValidateMode } = useValidateMode();
 
   const dispatch = useDispatch();
-  const authMode = useSelector((store) => store.auth.authMode);
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

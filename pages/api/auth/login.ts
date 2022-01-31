@@ -1,8 +1,8 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import Data from "../../lib/data";
+import Data from "../../../lib/data";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { StoredUserType } from "../../types/user";
+import { StoredUserType } from "../../../types/user";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
