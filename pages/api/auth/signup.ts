@@ -47,8 +47,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         Date.now() + 60 * 60 * 24 * 1000 * 3 //3일
       )}; httponly`
     );
-    // const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> = newUser;
-    // delete newUserWithoutPassword.password;
+    const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> = newUser;
+    delete newUserWithoutPassword.password;
     res.statusCode = 200;
     return res.send(newUser);
   };

@@ -22,6 +22,7 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import useValidateMode from "../../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
+import { authActions } from "../../store/auth";
 
 const Container = styled.form`
   width: 568px;
@@ -330,7 +331,7 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
         <span
           className="sign-up-modal-set-login"
           role="presentation"
-          onClick={() => {}}
+          onClick={() => dispatch(authActions.setAuthMode("login"))}
         >
           로그인
         </span>
