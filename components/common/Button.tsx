@@ -1,4 +1,4 @@
-import { FC, ReactNode, ButtonHTMLAttributes } from "react";
+import { FC, ReactNode, ButtonHTMLAttributes, memo } from "react";
 import styled from "styled-components";
 import palette from "../../styles/palette";
 
@@ -23,4 +23,4 @@ const Button: FC<IProps> = ({ children, ...props }) => {
   return <Container {...props}>{children}</Container>;
 };
 
-export default Button;
+export default memo(Button);

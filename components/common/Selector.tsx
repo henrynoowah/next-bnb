@@ -1,4 +1,4 @@
-import { FC, SelectHTMLAttributes } from "react";
+import { FC, SelectHTMLAttributes, memo } from "react";
 import styled, { css } from "styled-components";
 import { useSelector } from "../../store";
 import palette from "../../styles/palette";
@@ -66,4 +66,4 @@ const Selector: FC<IProps> = ({
   );
 };
 
-export default Selector;
+export default memo(Selector);
