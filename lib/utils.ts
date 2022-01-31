@@ -10,6 +10,5 @@ export const cookieStringToObject = (cookieString: string | undefined) => {
       cookies[pair[0]] = pair.splice(1).join("=");
     });
   }
-  console.log(cookies)
   return cookies;
 }; 
