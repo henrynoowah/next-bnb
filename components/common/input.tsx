@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from "react";
+import { FC, InputHTMLAttributes, memo } from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 import { useSelector } from "../../store";
@@ -93,4 +93,4 @@ const Input: FC<IProps> = ({
   );
 };
 
-export default Input;
+export default memo(Input);
