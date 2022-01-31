@@ -8,7 +8,6 @@ import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
 import Input from "../common/input";
 import Button from "../common/Button";
 import { useDispatch } from "react-redux";
-import { useSelector } from "../../store";
 import { authActions } from "../../store/auth";
 import { loginAPI } from "../../lib/api/auth";
 import useValidateMode from "../../hooks/useValidateMode";

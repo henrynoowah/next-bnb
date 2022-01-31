@@ -135,6 +135,10 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
   const [birthDay, setBirthDay] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
 
+  const disabledMonths = ["월"];
+  const disabledDays = ["일"];
+  const disabledYears = ["년"];
+
   const dispatch = useDispatch();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -298,7 +302,7 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
         <div className="sign-up-modal-birthday-month-selector">
           <Selector
             options={monthList}
-            disabledOptions={["월"]}
+            disabledOptions={disabledMonths}
             defaultValue="월"
             isValid={!!birthMonth}
             onChange={onChangeBirthMonth}
@@ -307,7 +311,7 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
         <div className="sign-up-modal-birthday-day-selector">
           <Selector
             options={dayList}
-            disabledOptions={["일"]}
+            disabledOptions={disabledDays}
             defaultValue="일"
             isValid={!!birthDay}
             onChange={onChangeBirthDay}
@@ -316,7 +320,7 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
         <div className="sign-up-modal-birthday-year-selector">
           <Selector
             options={yearList}
-            disabledOptions={["년"]}
+            disabledOptions={disabledYears}
             defaultValue="년"
             isValid={!!birthYear}
             onChange={onChangeBirthYear}

@@ -1,16 +1,20 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useState } from "react";
 import styled from "styled-components";
 import useModal from "../hooks/useModal";
 import AirbnbLogoIcon from "../public/static/svg/logo/logo.svg";
 import AirbnbLogoTextIcon from "../public/static/svg/logo/logo_text.svg";
 import { useSelector } from "../store";
 import palette from "../styles/palette";
-import SignUpModal from "./auth/SignUpModal";
 import HamburgerIcon from "../public/static/svg/header/hamburger.svg";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
 import AuthModal from "./auth/AuthModal";
+import OutsideClickHander from "react-outside-click-handler";
+import { logoutAPI } from "../lib/api/auth";
+import { userActions } from "../store/user";
+import HeaderAuths from "./HeaderAuths";
+import HeaderUserProfile from "./HeaderUserProfile";
 
 const Container = styled.div`
   position: sticky;
@@ -30,6 +34,38 @@ const Container = styled.div`
     align-items: center;
     .header-logo {
       margin-right: 6px;
+    }
+  }
+
+  .header-logo-wrapper + div {
+    position: relative;
+  }
+
+  .header-usermenu {
+    position: absolute;
+    right: 0;
+    top: 52px;
+    width: 240px;
+    padding: 8px 0;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: white;
+    li {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 42px;
+      padding: 0 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: ${palette.gray_f7};
+      }
+    }
+    .header-usermenu-divider {
+      width: 100%;
+      height: 1px;
+      margin: 8px 0;
+      background-color: ${palette.gray_dd};
     }
   }
 
@@ -86,9 +122,19 @@ const Container = styled.div`
 `;
 
 const Header: FC = () => {
-  const { openModal, ModalPortal, closeModal } = useModal();
+  const [isUserMenuOpened, setIsUserMenuOpened] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
+  const isLogged = useSelector((store) => store.user.isLogged);
+
+  const logout = async () => {
+    try {
+      await logoutAPI();
+      dispatch(userActions.initUser());
+      setIsUserMenuOpened(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Container>
@@ -98,45 +144,8 @@ const Header: FC = () => {
           <AirbnbLogoTextIcon />
         </a>
       </Link>
-      {!user.isLogged && (
-        <div className="header-auth-buttons">
-          <button
-            type="button"
-            className="header-sign-up-button"
-            onClick={() => {
-              dispatch(authActions.setAuthMode("signUp"));
-              openModal();
-            }}
-          >
-            회원가입
-          </button>
-          <button
-            type="button"
-            className="header-login-button"
-            onClick={() => {
-              dispatch(authActions.setAuthMode("login"));
-              openModal();
-            }}
-          >
-            로그인
-          </button>
-        </div>
-      )}
-      {user.isLogged && (
-        <button className="header-user-profile" type="button">
-          <HamburgerIcon />
-          <img
-            className="header-user-profile-image"
-            src={user.profileImage}
-            alt=""
-          />
-        </button>
-      )}
-      {ModalPortal && (
-        <ModalPortal>
-          <AuthModal closeModal={closeModal} />
-        </ModalPortal>
-      )}
+      {!isLogged && <HeaderAuths />}
+      {isLogged && <HeaderUserProfile />}
     </Container>
   );
 };
