@@ -19,6 +19,14 @@ const registerRoomSlice = createSlice({
     setBuildingType: (state, action: PayloadAction<string>) => {
       state.buildingType = action.payload;
       return state;
+    },
+    setRoomType: (state, action: PayloadAction<string>) => {
+      state.roomType = action.payload
+      return state;
+    },
+    setIsUpForGuest: (state, action: PayloadAction<boolean>) => {
+      state.isSetUpForGuest = action.payload
+      return state;
     }
   }
 })
