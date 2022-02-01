@@ -5,15 +5,16 @@ import {
   TypedUseSelectorHook,
   useSelector as useReduxSelector
 } from "react-redux";
-import user from "../lib/data/user";
-import userSlice, { userActions } from "./user";
+import userSlice from "./user";
 import commonSlice from "./common";
 import authSlice from "./auth";
+import registerRoomSlice from "./registerRoom";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
   common: commonSlice.reducer,
-  auth: authSlice.reducer
+  auth: authSlice.reducer,
+  registerRoom: registerRoomSlice.reducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
