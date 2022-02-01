@@ -14,7 +14,11 @@ const registerRoomSlice = createSlice({
   reducers : {
     setLargeBuildingType: (state, action: PayloadAction<string>) => {
       state.largeBuildingType = action.payload
-      return state
+      return state;
+    },
+    setBuildingType: (state, action: PayloadAction<string>) => {
+      state.buildingType = action.payload;
+      return state;
     }
   }
 })
