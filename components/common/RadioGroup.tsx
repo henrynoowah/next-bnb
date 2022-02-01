@@ -108,7 +108,7 @@ interface IProps {
   onChange?: (value: any) => void;
   isValid: boolean;
   options?: { label: string; value: any; description?: string }[];
-  errMessage: string;
+  errMessage?: string;
 }
 
 const RadioGroup: FC<IProps> = ({
