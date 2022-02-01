@@ -6,4 +6,13 @@ export type UserState = UserType & {
 
 export type CommonState = {
   validateMode: boolean;
+};
+
+
+export type registerBuildingState = {
+  largeBuildingType: string | null;
+  buildingType: string | null,
+  roomType: string | null,
+  isSetUpForGuest: string | null,
+
 }
