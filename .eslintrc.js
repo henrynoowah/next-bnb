@@ -61,6 +61,7 @@ module.exports = {
       }, //import 시 확장자명은 사용하지 않는다.
     ],
     // 빌드시 airbnb function component 에러 해결
+    // 함수를 변수로 선언안하고 바로 함수 실행을 할 시 생기는 예외처리 제거
     "react/function-component-definition": [
       2,
       {

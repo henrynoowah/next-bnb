@@ -123,3 +123,5 @@ export const boutiquesHotelBuildingTypeList = [
   "레지던스",
   "객잔(중국)",
 ];
+
+export const bedRoomCountList = Array.from(Array(15), (_, i) => `침실 ${i+1}개`)

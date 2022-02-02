@@ -7,6 +7,7 @@ import { registerRoomActions } from "../../store/registerRoom";
 import palette from "../../styles/palette";
 import RadioGroup from "../common/RadioGroup";
 import Selector from "../common/Selector";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -81,6 +82,17 @@ const RegisterRoomBuilding: FC = () => {
   const buildingType = useSelector((store) => store.registerRoom.buildingType);
 
   const roomType = useSelector((store) => store.registerRoom.roomType);
+
+  const isValid = useMemo(() => {
+    if (
+      !largeBuildingType ||
+      !buildingType ||
+      !roomType ||
+      !isSetUpForGuest === null
+    ) {
+      return false;
+    }
+  }, [largeBuildingType, buildingType, roomType, isSetUpForGuestOptions]);
 
   const onChangeLargeBuildingType = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(registerRoomActions.setLargeBuildingType(e.target.value));
@@ -184,6 +196,7 @@ const RegisterRoomBuilding: FC = () => {
               options={roomTypeRadioOptions}
               onChange={onChangeRoomType}
               isValid={!!roomType}
+              errMessage="test"
             />
           </div>
           <div className="register-room-type-radio">
@@ -192,11 +205,17 @@ const RegisterRoomBuilding: FC = () => {
               value={isSetUpForGuest}
               options={isSetUpForGuestOptions}
               onChange={onChangeIsSetUpForGuest}
-              isValid={!!roomType}
+              isValid={isSetUpForGuest != null}
+              errMessage="test"
             />
           </div>
         </>
       )}
+      <RegisterRoomFooter
+        isValid={isValid}
+        prevHref="/"
+        nextHref="/room/register/bedroom"
+      />
     </Container>
   );
 };
