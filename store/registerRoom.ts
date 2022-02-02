@@ -1,11 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { registerBuildingState } from "../types/reduxState";
+import { RegisterRoomState } from "../types/reduxState";
+import { BedType } from "../types/room";
 
-const initialState: registerBuildingState = {
+const initialState: RegisterRoomState = {
   largeBuildingType: null,
   buildingType: null,
   roomType: null,
-  isSetUpForGuest: null
+  isSetUpForGuest: null,
+  maxiumumGuestCount: 1,
+  bedroomCounte: 0,
+  bedCount: 0,
+  bedList: []
 }
 
 const registerRoomSlice = createSlice({

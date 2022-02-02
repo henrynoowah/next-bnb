@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useEffect } from "react";
+import { FC, MouseEvent, MouseEventHandler, useEffect } from "react";
 import BackArrowIcon from "../../public/static/svg/registerregister_room_footer_back_arrow.svg";
 import Button from "../common/Button";
 import palette from "../../styles/palette";
@@ -38,9 +38,9 @@ interface IProps {
 const RegisterRoomFooter: FC<IProps> = ({
   prevHref,
   nextHref,
-  isValid = true,
+  isValid = false,
 }) => {
-  const onClickNext = (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onClickNext = (e: MouseEvent<HTMLButtonElement | MouseEvent>) => {
     if (!isValid) {
       e.preventDefault();
       setValidateMode(true);
@@ -62,7 +62,9 @@ const RegisterRoomFooter: FC<IProps> = ({
       </Link>
       <Link href={nextHref || ""}>
         <a>
-          <Button color="dark_cyan">계속</Button>
+          <Button color={"dark_cyan"} onClick={onClickNext}>
+            계속
+          </Button>
         </a>
       </Link>
     </Container>

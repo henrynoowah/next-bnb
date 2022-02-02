@@ -18,50 +18,21 @@ const Container = styled.button`
 `;
 
 const getButtonColor = (color: string) => {
-  // if (colorReverse) {
-  //   switch (color) {
-  //     case "dark_cyan":
-  //       return css`
-  //         border: 2px solid ${palette.dark_cyan};
-  //         color: ${palette.dark_cyan};
-  //         background-color: white;
-  //       `;
-  //     default:
-  //       return css`
-  //         border: 2px solid ${palette.black};
-  //         color: ${palette.black};
-  //         background-color: white;
-  //       `;
-  //   }
-  // }
   switch (color) {
     case "dark_cyan":
       return css`
         background-color: ${palette.dark_cyan};
-        color: white;
-      `;
-    case "bittersweet":
-      return css`
-        background-color: ${palette.bittersweet};
-        color: white;
-      `;
-    case "amaranth":
-      return css`
-        background-color: ${palette.amaranth};
-        color: white;
       `;
     default:
       return css`
-        background-color: white;
-        color: ${palette.black};
-        border: 1px solid ${palette.gray_c4};
+        background-color: ${palette.bittersweet};
       `;
   }
 };
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  color?: "dark_cyan" | "white" | "bittersweet" | "amaranth";
+  color?: "dark_cyan" | any;
 }
 
 const Button: FC<IProps> = ({ children, ...props }) => {

@@ -8,11 +8,16 @@ export type CommonState = {
   validateMode: boolean;
 };
 
+export type RegisterRoomState = registerBuildingState & {
+  maxiumumGuestCount: number;
+  bedroomCounte: number;
+  bedCount: number;
+  bedList: { id: number; beds: { type: BedType; count: number}[] }[] | null
+}
 
 export type registerBuildingState = {
   largeBuildingType: string | null;
   buildingType: string | null,
   roomType: string | null,
   isSetUpForGuest: boolean | null,
-
 }

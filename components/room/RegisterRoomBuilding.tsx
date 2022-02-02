@@ -83,6 +83,17 @@ const RegisterRoomBuilding: FC = () => {
 
   const roomType = useSelector((store) => store.registerRoom.roomType);
 
+  const isValid = useMemo(() => {
+    if (
+      !largeBuildingType ||
+      !buildingType ||
+      !roomType ||
+      !isSetUpForGuest === null
+    ) {
+      return false;
+    }
+  }, [largeBuildingType, buildingType, roomType, isSetUpForGuestOptions]);
+
   const onChangeLargeBuildingType = (e: ChangeEvent<HTMLSelectElement>) => {
     dispatch(registerRoomActions.setLargeBuildingType(e.target.value));
   };
@@ -193,13 +204,13 @@ const RegisterRoomBuilding: FC = () => {
               value={isSetUpForGuest}
               options={isSetUpForGuestOptions}
               onChange={onChangeIsSetUpForGuest}
-              isValid={!!roomType}
+              isValid={isSetUpForGuest == null}
             />
           </div>
         </>
       )}
       <RegisterRoomFooter
-        isValid={false}
+        isValid={isValid}
         prevHref="/"
         nextHref="/room/register/bedrooms"
       />

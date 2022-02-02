@@ -5,7 +5,7 @@ import RegisterRoomFooter from "../../../components/room/RegisterRoomFooter";
 const building: NextPage = () => {
   return (
     <>
-      <RegisterRoomBuilding />x
+      <RegisterRoomBuilding />
     </>
   );
 };
