@@ -10,7 +10,7 @@ export type CommonState = {
 
 export type RegisterRoomState = registerBuildingState & {
   maxiumumGuestCount: number;
-  bedroomCounte: number;
+  bedroomCount: number;
   bedCount: number;
   bedList: { id: number; beds: { type: BedType; count: number}[] }[] | null
 }

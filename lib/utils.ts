@@ -12,3 +12,12 @@ export const cookieStringToObject = (cookieString: string | undefined) => {
   }
   return cookies;
 }; 
+
+//* string에서 number만 return하는 함수
+export const getNumber = (str: string) => {
+  const number = str.match(/\d/g)?.join("");
+  if (number) {
+    return Number(number)
+  }
+  return null;
+}

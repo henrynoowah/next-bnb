@@ -8,7 +8,7 @@ const initialState: RegisterRoomState = {
   roomType: null,
   isSetUpForGuest: null,
   maxiumumGuestCount: 1,
-  bedroomCounte: 0,
+  bedroomCount: 0,
   bedCount: 0,
   bedList: []
 }
@@ -36,6 +36,14 @@ const registerRoomSlice = createSlice({
     setMaximumGuestCount: (state, action: PayloadAction<number>) => {
       state.maxiumumGuestCount = action.payload;
       return state;
+    },
+    setBedRoomCount: (state, action: PayloadAction<number>) => {
+      state.bedroomCount = action.payload;
+      return state
+    },
+    setBedCount: (state, action: PayloadAction<number>) => {
+      state.bedCount = action.payload;
+      return state
     }
   }
 })
