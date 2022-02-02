@@ -196,6 +196,7 @@ const RegisterRoomBuilding: FC = () => {
               options={roomTypeRadioOptions}
               onChange={onChangeRoomType}
               isValid={!!roomType}
+              errMessage="test"
             />
           </div>
           <div className="register-room-type-radio">
@@ -204,7 +205,8 @@ const RegisterRoomBuilding: FC = () => {
               value={isSetUpForGuest}
               options={isSetUpForGuestOptions}
               onChange={onChangeIsSetUpForGuest}
-              isValid={isSetUpForGuest == null}
+              isValid={isSetUpForGuest != null}
+              errMessage="test"
             />
           </div>
         </>
@@ -212,7 +214,7 @@ const RegisterRoomBuilding: FC = () => {
       <RegisterRoomFooter
         isValid={isValid}
         prevHref="/"
-        nextHref="/room/register/bedrooms"
+        nextHref="/room/register/bedroom"
       />
     </Container>
   );
