@@ -122,19 +122,7 @@ const Container = styled.div`
 `;
 
 const Header: FC = () => {
-  const [isUserMenuOpened, setIsUserMenuOpened] = useState(false);
-  const dispatch = useDispatch();
   const isLogged = useSelector((store) => store.user.isLogged);
-
-  const logout = async () => {
-    try {
-      await logoutAPI();
-      dispatch(userActions.initUser());
-      setIsUserMenuOpened(false);
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return (
     <Container>
