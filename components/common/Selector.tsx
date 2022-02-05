@@ -96,13 +96,13 @@ const Container = styled.div<SelectorContainerProps>`
 `;
 
 interface IProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  label: string;
+  label?: string;
   options?: string[];
   value?: string;
   disabledOptions?: string[];
   errMessage?: string;
   isValid?: boolean;
-  type: "register" | "normal";
+  type?: "register" | "normal";
 }
 
 const Selector: FC<IProps> = ({
