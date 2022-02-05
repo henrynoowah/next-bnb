@@ -38,7 +38,19 @@ const registerRoomSlice = createSlice({
       return state;
     },
     setBedRoomCount: (state, action: PayloadAction<number>) => {
-      state.bedroomCount = action.payload;
+      const bedroomCount = action.payload;
+      let { bedList } = state;
+      state.bedroomCount = bedroomCount;
+
+      if(bedroomCount < bedList.length) {
+        bedList = state.bedList?.slice(0, bedroomCount);
+      } else {
+        for(let i = bedList?.length + 1; i < bedroomCount + 1; i++) {
+          bedList.push({id: i, beds: []})
+        }
+      }
+
+      state.bedList = bedList;
       return state
     },
     setBedCount: (state, action: PayloadAction<number>) => {

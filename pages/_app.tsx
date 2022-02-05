@@ -11,6 +11,7 @@ import { userActions } from "../store/user";
 const app = ({ Component, pageProps }: AppProps) => {
   return (
     <>
+      <title>next-bnb</title>
       <GlobalStyle />
       <Header />
       <Component {...pageProps} />

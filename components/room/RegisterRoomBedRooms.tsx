@@ -6,8 +6,10 @@ import { getNumber } from "../../lib/utils";
 import { useSelector } from "../../store";
 import { registerRoomActions } from "../../store/registerRoom";
 import palette from "../../styles/palette";
+import Button from "../common/Button";
 import Counter from "../common/Counter";
 import Selector from "../common/Selector";
+import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
@@ -39,6 +41,15 @@ const Container = styled.div`
     width: 320px;
     margin-bottom: 32px;
   }
+  .register-room-bed-type-info {
+    margin-top: 6px;
+    margin-bottom: 20px;
+    max-width: 400px;
+    word-break: keep-all;
+  }
+  .register-room-bed-type-list-wrapper {
+    width: 548px;
+  }
 `;
 
 const RegisterRoomBedRooms: FC = () => {
@@ -49,6 +60,7 @@ const RegisterRoomBedRooms: FC = () => {
 
   const bedRoomCount = useSelector((store) => store.registerRoom.bedroomCount);
   const bedCount = useSelector((store) => store.registerRoom.bedCount);
+  const bedList = useSelector((store) => store.registerRoom.bedList);
 
   const onChangeMaximumGuestCount = (value: number) => {
     dispatch(registerRoomActions.setMaximumGuestCount(value));
@@ -93,6 +105,16 @@ const RegisterRoomBedRooms: FC = () => {
         prevHref="/room/register/building"
         nextHref="/room/register/bedroom"
       />
+      <h4>침대 유형</h4>
+      <p className="register-room-bed-type-info ">
+        각 침실에 놓인 침대유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지
+        게스트가 잘 파악할 수 있습니다.
+      </p>
+      <div className="register-room-bed-type-list-wrapper">
+        {bedList.map((bedroom) => (
+          <RegisterRoomBedTypes bedroom={bedroom} />
+        ))}
+      </div>
     </Container>
   );
 };
