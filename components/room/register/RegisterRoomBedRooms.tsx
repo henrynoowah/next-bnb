@@ -1,14 +1,15 @@
 import { ChangeEvent, FC } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { bedRoomCountList } from "../../lib/staticData";
-import { getNumber } from "../../lib/utils";
-import { useSelector } from "../../store";
-import { registerRoomActions } from "../../store/registerRoom";
-import palette from "../../styles/palette";
-import Button from "../common/Button";
-import Counter from "../common/Counter";
-import Selector from "../common/Selector";
+import { bedRoomCountList } from "../../../lib/staticData";
+import { getNumber } from "../../../lib/utils";
+import { useSelector } from "../../../store";
+import { registerRoomActions } from "../../../store/registerRoom";
+import palette from "../../../styles/palette";
+import Button from "../../common/Button";
+import Counter from "../../common/Counter";
+import Selector from "../../common/Selector";
+import RegisterRoomBedList from "./RegisterRoomBedList";
 import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 
@@ -95,26 +96,25 @@ const RegisterRoomBedRooms: FC = () => {
           value={`침실 ${bedRoomCount}개`}
           options={bedRoomCountList}
           onChange={onChangeBedRoomCount}
+          disabled={maximumGuestCount === 0}
         />
       </div>
       <div className="register-room-bedroom-count-wrapper">
         <Counter label="침대" value={bedCount} onChange={onChangeBedCount} />
       </div>
-      <RegisterRoomFooter
-        isValid={true}
-        prevHref="/room/register/building"
-        nextHref="/room/register/bedroom"
-      />
       <h4>침대 유형</h4>
       <p className="register-room-bed-type-info ">
         각 침실에 놓인 침대유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지
         게스트가 잘 파악할 수 있습니다.
       </p>
-      <div className="register-room-bed-type-list-wrapper">
-        {bedList.map((bedroom) => (
-          <RegisterRoomBedTypes bedroom={bedroom} />
-        ))}
-      </div>
+      <ul className="register-room-bed-type-list-wrapper">
+        <RegisterRoomBedList />
+      </ul>
+      <RegisterRoomFooter
+        isValid={!!bedRoomCount}
+        prevHref="/room/register/building"
+        nextHref="/room/register/bathroom"
+      />
     </Container>
   );
 };
