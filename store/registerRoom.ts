@@ -49,14 +49,33 @@ const registerRoomSlice = createSlice({
           bedList.push({id: i, beds: []})
         }
       }
-
       state.bedList = bedList;
       return state
     },
     setBedCount: (state, action: PayloadAction<number>) => {
       state.bedCount = action.payload;
       return state
+    },
+    setBedTypeCount: (state, action: PayloadAction<{ bedroomId: number; type: BedType; count: number}>) => {
+      const { bedroomId, type, count } = action.payload;
+      const bedroom = state.bedList[bedroomId - 1];
+      const prevBeds = bedroom.beds;
+      const index = prevBeds.findIndex(bed => bed.type === type);
+
+      if (index === -1) {
+        // 타입이 존재하지 않을 때
+        state.bedList[bedroomId - 1].beds =[...prevBeds, { type, count }];
+        return state
+      }
+      // 타입이 존재할 때
+      if (count === 0) {
+        state.bedList[bedroomId - 1].beds.splice(index, 1);
+      } else {
+        state.bedList[bedroomId - 1].beds[index].count = count;
+      }
+      return state
     }
+    
   }
 })
 

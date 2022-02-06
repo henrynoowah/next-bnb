@@ -1,14 +1,14 @@
 import { ChangeEvent, FC } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { bedRoomCountList } from "../../lib/staticData";
-import { getNumber } from "../../lib/utils";
-import { useSelector } from "../../store";
-import { registerRoomActions } from "../../store/registerRoom";
-import palette from "../../styles/palette";
-import Button from "../common/Button";
-import Counter from "../common/Counter";
-import Selector from "../common/Selector";
+import { bedRoomCountList } from "../../../lib/staticData";
+import { getNumber } from "../../../lib/utils";
+import { useSelector } from "../../../store";
+import { registerRoomActions } from "../../../store/registerRoom";
+import palette from "../../../styles/palette";
+import Button from "../../common/Button";
+import Counter from "../../common/Counter";
+import Selector from "../../common/Selector";
 import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 
@@ -95,6 +95,7 @@ const RegisterRoomBedRooms: FC = () => {
           value={`침실 ${bedRoomCount}개`}
           options={bedRoomCountList}
           onChange={onChangeBedRoomCount}
+          disabled={maximumGuestCount === 0}
         />
       </div>
       <div className="register-room-bedroom-count-wrapper">
