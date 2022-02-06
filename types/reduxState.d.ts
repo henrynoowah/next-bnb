@@ -20,4 +20,5 @@ export type registerBuildingState = {
   buildingType: string | null,
   roomType: string | null,
   isSetUpForGuest: boolean | null,
+  publicBedList: { type: BedType; count: number}[]
 }
