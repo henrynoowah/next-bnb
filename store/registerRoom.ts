@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { count } from "console";
+import { stat } from "fs";
 import { RegisterRoomState } from "../types/reduxState";
 import { BedType } from "../types/room";
 
@@ -10,7 +12,8 @@ const initialState: RegisterRoomState = {
   maxiumumGuestCount: 1,
   bedroomCount: 0,
   bedCount: 0,
-  bedList: []
+  bedList: [],
+  publicBedList: []
 }
 
 const registerRoomSlice = createSlice({
@@ -74,9 +77,23 @@ const registerRoomSlice = createSlice({
         state.bedList[bedroomId - 1].beds[index].count = count;
       }
       return state
+    },
+    setPublicBedTypeCount: (state, action: PayloadAction<{ type: BedType; count: number}>) => {
+      const { type, count } = action.payload;
+
+      const index = state.publicBedList.findIndex(bed => bed.type === type);
+      if (index === -1) {
+        state.publicBedList = [...state.publicBedList, { type, count }];
+        return state;
+      }
+      if (count === 0) {
+        state.publicBedList.splice(index, 1);
+      } else {
+        state.publicBedList[index].count = count;
+      }
+      return state;
     }
-    
-  }
+   }
 })
 
 export const registerRoomActions = { ...registerRoomSlice.actions }

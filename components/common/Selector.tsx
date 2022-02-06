@@ -102,6 +102,7 @@ interface IProps extends SelectHTMLAttributes<HTMLSelectElement> {
   disabledOptions?: string[];
   errMessage?: string;
   isValid?: boolean;
+  useValidation?: boolean;
   type?: "register" | "normal";
 }
 
@@ -112,6 +113,7 @@ const Selector: FC<IProps> = ({
   errMessage,
   isValid,
   type = "normal",
+  useValidation = true,
   ...props
 }) => {
   const validateMode = useSelector((store) => store.common.validateMode);
