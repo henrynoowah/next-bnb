@@ -6,11 +6,9 @@ import { getNumber } from "../../../lib/utils";
 import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import palette from "../../../styles/palette";
-import Button from "../../common/Button";
 import Counter from "../../common/Counter";
 import Selector from "../../common/Selector";
 import RegisterRoomBedList from "./RegisterRoomBedList";
-import RegisterRoomBedTypes from "./RegisterRoomBedTypes";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
@@ -94,9 +92,10 @@ const RegisterRoomBedRooms: FC = () => {
           type="register"
           label="게스트가 사용할 수 있는 침실은 몇 개인가요?"
           value={`침실 ${bedRoomCount}개`}
-          options={bedRoomCountList}
+          options={bedRoomCountList.slice(1, -1)}
           onChange={onChangeBedRoomCount}
           disabled={maximumGuestCount === 0}
+          disabledOptions={[bedRoomCountList[0]]}
         />
       </div>
       <div className="register-room-bedroom-count-wrapper">

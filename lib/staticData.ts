@@ -126,7 +126,7 @@ export const boutiquesHotelBuildingTypeList = [
   "객잔(중국)",
 ];
 
-export const bedRoomCountList = Array.from(Array(15), (_, i) => `침실 ${i+1}개`)
+export const bedRoomCountList = Array.from(Array(15), (_, i) => `침실 ${i}개`)
 
 //* 침대 유형
 export const bedTypes: BedType[] = [
