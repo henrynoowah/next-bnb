@@ -1,24 +1,32 @@
 import { UserType } from "./user"; 
 
 export type UserState = UserType & {
-  isLogged: boolean
+  isLogged: boolean;
 };
 
 export type CommonState = {
   validateMode: boolean;
 };
 
-export type RegisterRoomState = registerBuildingState & {
+export type RegisterRoomState = {
+  largeBuildingType: string | null;
+  buildingType: string | null;
+  roomType: string | null;
+  isSetUpForGuest: boolean | null;
   maxiumumGuestCount: number;
   bedroomCount: number;
   bedCount: number;
-  bedList: { id: number; beds: { type: BedType; count: number}[] }[]
-}
-
-export type registerBuildingState = {
-  largeBuildingType: string | null;
-  buildingType: string | null,
-  roomType: string | null,
-  isSetUpForGuest: boolean | null,
-  publicBedList: { type: BedType; count: number}[]
+  bedList: { id: number; beds: { type: BedType; count: number}[] }[];
+  publicBedList: { type: BedType; count: number}[];
+  bathroomCount: number;
+  bathroomType: "private" | "public" | null;
+  // location
+  country: string;
+  city: string;
+  district: string;
+  streetAddress: string;
+  detailAddress: string;
+  postcode: string;
+  latitude: number;
+  longitude: number;
 }

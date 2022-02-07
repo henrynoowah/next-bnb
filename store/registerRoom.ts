@@ -13,7 +13,17 @@ const initialState: RegisterRoomState = {
   bedroomCount: 0,
   bedCount: 0,
   bedList: [],
-  publicBedList: []
+  publicBedList: [],
+  bathroomCount: 1,
+  bathroomType: null,
+  country: "",
+  city: "",
+  district: "",
+  streetAddress: "",
+  detailAddress: "",
+  postcode: "",
+  latitude: 0,
+  longitude: 0,
 }
 
 const registerRoomSlice = createSlice({
@@ -92,7 +102,39 @@ const registerRoomSlice = createSlice({
         state.publicBedList[index].count = count;
       }
       return state;
-    }
+    },
+    setBathroomCount: (state, action: PayloadAction<number>) => {
+      state.bathroomCount = action.payload;
+      return state;
+    },
+    setBathroomType: (state, action: PayloadAction<"private" | "public">) => {
+      state.bathroomType = action.payload;
+      return state;
+    },
+    setCountry: (state, action: PayloadAction<string>) => {
+      state.country = action.payload;
+    },
+    setCity: (state, action: PayloadAction<string>) => {
+      state.city = action.payload;
+    },
+    setDistrict: (state, action: PayloadAction<string>) => {
+      state.district = action.payload;
+    },
+    setStreetAddress: (state, action: PayloadAction<string>) => {
+      state.streetAddress = action.payload;
+    },
+    setDetailAddress: (state, action: PayloadAction<string>) => {
+      state.detailAddress = action.payload;
+    },
+    setPostCode: (state, action: PayloadAction<string>) => {
+      state.postcode = action.payload;
+    },
+    setLatitude: (state, action: PayloadAction<number>) => {
+      state.latitude = action.payload;
+    },
+    setLongitude: (state, action: PayloadAction<number>) => {
+      state.longitude = action.payload;
+    },
    }
 })
 

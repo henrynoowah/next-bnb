@@ -3,13 +3,13 @@ import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 import { useSelector } from "../../store";
 
-type InputContainerProps = {
-  iconExist: boolean;
-  isValid: boolean;
-  useValidation: boolean;
-};
-
 const Container = styled.div<InputContainerProps>`
+  label {
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
   input {
     position: relative;
     width: 100%;
@@ -62,14 +62,22 @@ const Container = styled.div<InputContainerProps>`
   }
 `;
 
+type InputContainerProps = {
+  iconExist: boolean;
+  isValid: boolean;
+  useValidation: boolean;
+};
+
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
   isValid?: boolean;
   useValidation?: boolean;
   errMessage?: string;
+  label?: string;
 }
 
 const Input: FC<IProps> = ({
+  label,
   icon,
   isValid = false,
   useValidation = true,
@@ -84,7 +92,13 @@ const Input: FC<IProps> = ({
       isValid={isValid}
       useValidation={validateMode && useValidation}
     >
-      <input {...props} />
+      {label && (
+        <label>
+          <span>{label}</span>
+          <input {...props} />
+        </label>
+      )}
+      {!label && <input {...props} />}
       <div className="input-icon-wrapper">{icon}</div>
       {useValidation && validateMode && !isValid && errMessage && (
         <p className="input-err-message">{errMessage}</p>
