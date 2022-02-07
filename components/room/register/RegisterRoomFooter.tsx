@@ -62,7 +62,7 @@ const RegisterRoomFooter: FC<IProps> = ({
       </Link>
       <Link href={nextHref || ""}>
         <a>
-          <Button styleType="normal" color={"dark_cyan"} onClick={onClickNext}>
+          <Button color={"dark_cyan"} onClick={onClickNext}>
             계속
           </Button>
         </a>

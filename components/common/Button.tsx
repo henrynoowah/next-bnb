@@ -2,70 +2,91 @@ import { FC, ReactNode, ButtonHTMLAttributes, memo } from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 
-const Container = styled.button<{ styleType: "normal" | "register" }>`
-  ${({ styleType }) =>
-    styleType === "normal" ? NormalButtonStyle : RegisterButtonStyle}
-  ${(props) => getButtonColor(props.color || "")}
-`;
-
-const NormalButtonStyle = css`
+const Container = styled.button<StyledButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 48px;
   padding: 0 15px;
   border: 0;
   border-radius: 4px;
-  background-color: ${palette.bittersweet};
-  color: white;
-  font-size: 16px;
-  font-weight: 800;
-  outline: none;
-  cursor: pointer;
-`;
-
-const RegisterButtonStyle = css`
-  width: 161px;
-  height: 48px;
-  border: 1px solid ${palette.gray_c4};
-  background-color: white;
-  border-radius: 4px;
-  color: ${palette.gray_48};
   font-size: 18px;
   font-weight: 700;
   outline: none;
   cursor: pointer;
+  width: ${(props) => props.width};
+  ${(props) => getButtonColor(props.color || "", props.colorReverse)};
 `;
 
-const getButtonColor = (color: string) => {
+const getButtonColor = (color: string, colorReverse: boolean) => {
+  if (colorReverse) {
+    switch (color) {
+      case "dark_cyan":
+        return css`
+          border: 2px solid ${palette.dark_cyan};
+          color: ${palette.dark_cyan};
+          background-color: white;
+        `;
+      case "white":
+        return css`
+          background-color: white;
+        `;
+      default:
+        return css`
+          background-color: ${palette.bittersweet};
+        `;
+    }
+  }
   switch (color) {
     case "dark_cyan":
       return css`
         background-color: ${palette.dark_cyan};
+        color: white;
       `;
-    case "white":
+    case "bittersweet":
       return css`
-        background-color: white;
+        background-color: ${palette.bittersweet};
+        color: white;
       `;
     default:
       return css`
-        background-color: ${palette.bittersweet};
+        background-color: white;
+        color: ${palette.black};
+        border: 1px solid ${palette.gray_c4};
       `;
   }
 };
 
+interface StyledButtonProps {
+  width: string | undefined;
+  colorReverse: boolean;
+}
+
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  color?: "dark_cyan" | any;
-  styleType: "normal" | "register";
+  color?: "dark_cyan" | "white" | "bittersweet";
+  width?: string;
+  colorReverse?: boolean;
+  icon?: JSX.Element;
 }
 
 const Button: FC<IProps> = ({
   children,
   color,
-  styleType = "normal",
+  width,
+  colorReverse = false,
+  icon,
   ...props
 }) => {
   return (
-    <Container color={color} {...props} styleType={styleType}>
+    <Container
+      color={color}
+      width={width}
+      colorReverse={colorReverse}
+      {...props}
+    >
+      {icon}
       {children}
     </Container>
   );

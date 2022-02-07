@@ -20,4 +20,13 @@ export type RegisterRoomState = {
   publicBedList: { type: BedType; count: number}[];
   bathroomCount: number;
   bathroomType: "private" | "public" | null;
+  // location
+  country: string;
+  city: string;
+  district: string;
+  streetAddress: string;
+  detailAddress: string;
+  postcode: string;
+  latitude: number;
+  longitude: number;
 }

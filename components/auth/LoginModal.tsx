@@ -5,7 +5,7 @@ import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg";
 import MailIcon from "../../public/static/svg/auth/mail.svg";
 import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
-import Input from "../common/input";
+import Input from "../common/Input";
 import Button from "../common/Button";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
@@ -127,7 +127,9 @@ const LoginModal: FC<IProps> = ({ closeModal }) => {
         />
       </div>
       <div className="login-modal-submit-button-wrapper">
-        <Button type="submit">로그인</Button>
+        <Button type="submit" color="bittersweet">
+          로그인
+        </Button>
       </div>
       <p>
         에어비엔비 계정이 없나요?

@@ -12,17 +12,17 @@ import MailIcon from "../../public/static/svg/auth/mail.svg";
 import PersonIcon from "../../public/static/svg/auth/person.svg";
 import OpenedEyeIcon from "../../public/static/svg/auth/opened_eye.svg";
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg";
-import Input from "../common/input";
 import { dayList, monthList, yearList } from "../../lib/staticData";
 import palette from "../../styles/palette";
-import Selector from "../common/Selector";
-import Button from "../common/Button";
 import { signUpAPI } from "../../lib/api/auth";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import useValidateMode from "../../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
 import { authActions } from "../../store/auth";
+import Input from "../common/Input";
+import Selector from "../common/Selector";
+import Button from "../common/Button";
 
 const Container = styled.form`
   width: 568px;
@@ -328,7 +328,9 @@ const SignUpModal: FC<IProps> = ({ closeModal }) => {
         </div>
       </div>
       <div className="sign-up-modal-submit-button-wrapper">
-        <Button type="submit">가입하기</Button>
+        <Button type="submit" color="bittersweet">
+          가입하기
+        </Button>
       </div>
       <p>
         이미 에어비엔비 계정이 있나요?
