@@ -58,6 +58,7 @@ const RegisterRoomPublicBedTypes: FC = () => {
 
   const bedsText = useMemo(() => {
     const texts = publicBedList.map((bed) => `${bed.type} ${bed.count}개`);
+    return texts;
   }, [publicBedList]);
 
   const initialBedOptions = () => publicBedList.map((bed) => bed.type);
@@ -79,11 +80,7 @@ const RegisterRoomPublicBedTypes: FC = () => {
             {bedsText}
           </p>
         </div>
-        <Button
-          onClick={() => setOpened(!opened)}
-          styleType="register"
-          color="white"
-        >
+        <Button onClick={() => setOpened(!opened)} color="white" width="161px">
           {opened && "완료"}
           {!opened && (totalBedCount === 0 ? "침대추가하기" : "침대수정하기")}
         </Button>

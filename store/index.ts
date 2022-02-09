@@ -1,6 +1,5 @@
 import { HYDRATE, createWrapper, MakeStore } from "next-redux-wrapper";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-
 import {
   TypedUseSelectorHook,
   useSelector as useReduxSelector
@@ -23,6 +22,8 @@ let initialRootState: RootState;
 
 const reducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
+    // if (action.payload.app === 'init') delete action.payload.app;
+    // if (action.payload.page === 'init') delete action.payload.page;
     if (state === initialRootState) {
       return {
         ...state,

@@ -25,10 +25,10 @@ app.getInitialProps = wrapper.getInitialAppProps(
     const myAppInitialProps = App.getInitialProps(context);
     const cookieObject = cookieStringToObject(context.ctx.req?.headers.cookie);
     const { isLogged } = store.getState().user;
+    console.log("app");
     try {
       if (!isLogged && cookieObject) {
         axios.defaults.headers.common["Cookie"] = cookieObject.access_token;
-        // console.log(axios.defaults.headers.common);
         const { data } = await meAPI();
         store.dispatch(userActions.setLoggedUser(data));
       }

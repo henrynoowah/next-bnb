@@ -1,14 +1,17 @@
 import { ChangeEvent, FC } from "react";
 import styled from "styled-components";
 import palette from "styles/palette";
-import Button from "components/common/Button";
+import Button from "@common/Button";
 import NavigationIcon from "../../../public/static/svg/register/navigation.svg";
-import Selector from "components/common/Selector";
+import Selector from "@common/Selector";
 import { countryList } from "lib/staticData";
-import Input from "components/common/Input";
-import { useSelector } from "store";
-import { useDispatch } from "react-redux";
+import Input from "@common/Input";
+import { useSelector, wrapper } from "store";
+import { ReactReduxContextValue, useDispatch } from "react-redux";
 import { registerRoomActions } from "store/registerRoom";
+import { userActions } from "store/user";
+import { commonActions } from "store/common";
+import { GetServerSideProps, GetServerSidePropsResult } from "next";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -136,5 +139,15 @@ const RegisterRoomLocation: FC = () => {
     </Container>
   );
 };
+
+// export const getServerSideProps: GetServerSideProps =
+//   wrapper.getServerSideProps((store) => async () => {
+//     try {
+//       store.dispatch(commonActions.setValidateMode(true));
+//       return { props: {} };
+//     } catch (e) {
+//       return { props: {} };
+//     }
+//   });
 
 export default RegisterRoomLocation;
